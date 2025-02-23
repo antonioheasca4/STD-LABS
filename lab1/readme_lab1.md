@@ -22,14 +22,13 @@
  - --rm tells Docker to go ahead and remove the container when it’s done executing.
  - Procesul principal(PID 1) al containerului va fi bash
   - ps aux
-    USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-    root         1  0.3  0.0   4588  3888 pts/0    Ss   22:23   0:00 bash
-    root        10  0.0  0.0   7888  3804 pts/0    R+   22:23   0:00 ps aux
+   - USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+   - root         1  0.3  0.0   4588  3888 pts/0    Ss   22:23   0:00 bash
+   - root        10  0.0  0.0   7888  3804 pts/0    R+   22:23   0:00 ps aux
  - Cand containerul porneste, apare un prompt de forma root@<container id>:/#
  - CONTAINERELE INTERACTIVE sunt folositoare atunci cand le folosim pentru a ne genera propria imagine. Poti rula containerul si sa observi toti pasii necesari dezvoltarii aplicatiei tale, pe care mai apoi sa ii adaugi in Dockerfile-ul personal
 
-#### Backround Cointainer:  docker container run --detach --name mydb -e MYSQL_ROOT_PASSWORD=my-secret-pw
-                            mysql:latest
+#### Backround Cointainer: docker container run --detach --name mydb -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql:latest
  -  --detach will run the container in the background.
  -  --name will name it mydb.
  -  -e will use an environment variable to specify the root password (NOTE: This should never be done in production).
@@ -41,13 +40,13 @@
  - Cu toate ca MySQL ruleaza, acest serviciu este izolat in container deoarece nu i-am specificat host-ului(laptopului meu) niciun port de retea => traficul de retea nu poate ajunge la container de la host pana cand nu sunt publicate explicit niste porturi
  - docker container exec --> Cand vrem sa rulam o comanda in interiorul  containerului 
  - docker container exec -it mydb mysql --user=root --password=$MYSQL_ROOT_PASSWORD --version
-    mysql: [Warning] Using a password on the command line interface can be insecure.
-    mysql  Ver 9.2.0 for Linux on x86_64 (MySQL Community Server - GPL)
+  - mysql: [Warning] Using a password on the command line interface can be insecure.
+  - mysql  Ver 9.2.0 for Linux on x86_64 (MySQL Community Server - GPL)
  - docker exec -it mydb sh --> m am conectat la un shell in interiorul containerului ( pot face asta si din interfata docker desktop apasand pe container, sectiunea Exec)
  - sh-5.1#  mysql --user=root --password=$MYSQL_ROOT_PASSWORD --version
-            mysql: [Warning] Using a password on the command line interface can be insecure.
-            mysql  Ver 9.2.0 for Linux on x86_64 (MySQL Community Server - GPL)
-            Am dat comanda din interiorul shell ului de data asta -> se observa verisunea 9.2.0 de 2 ori
+  - mysql: [Warning] Using a password on the command line interface can be insecure.
+  - mysql  Ver 9.2.0 for Linux on x86_64 (MySQL Community Server - GPL)
+  - Am dat comanda din interiorul shell ului de data asta -> se observa verisunea 9.2.0 de 2 ori
 
 ### Task 2
 
